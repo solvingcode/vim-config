@@ -19,6 +19,12 @@ local default_plugins = {
   },
 
   {
+    "christoomey/vim-tmux-navigator",
+    lazy = false,
+  },
+
+--[[
+  {
     "NvChad/nvterm",
     init = function()
       require("core.utils").load_mappings "nvterm"
@@ -28,7 +34,7 @@ local default_plugins = {
       require("nvterm").setup(opts)
     end,
   },
-
+--]]
   {
     "NvChad/nvim-colorizer.lua",
     init = function()
