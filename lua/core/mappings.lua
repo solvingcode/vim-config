@@ -42,6 +42,8 @@ M.general = {
     ["<Up>"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", opts = { expr = true } },
     ["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
 
+    ["<A-j>"] = { ":m .+1<CR>==", 'Move line down'},
+    ["<A-k>"] = { ":m .-2<CR>==", 'Move line up'},
     -- new buffer
     ["<leader>b"] = { "<cmd> enew <CR>", "New buffer" },
     ["<leader>ch"] = { "<cmd> NvCheatsheet <CR>", "Mapping cheatsheet" },
@@ -63,6 +65,8 @@ M.general = {
     ["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
     ["<"] = { "<gv", "Indent line" },
     [">"] = { ">gv", "Indent line" },
+    ["<A-j>"] = { ":m '>+1<CR>gv=gv", 'Move line down'},
+    ["<A-k>"] = { ":m '<-2<CR>gv=gv", 'Move line up'},
   },
 
   x = {

@@ -64,4 +64,34 @@ require("lspconfig").lua_ls.setup {
   },
 }
 
+require("lspconfig").tsserver.setup {
+  on_attach = M.on_attach,
+  capabilities = M.capabilities,
+}
+
+require("lspconfig").html.setup {
+  on_attach = M.on_attach,
+  capabilities = M.capabilities,
+}
+
+require("lspconfig").cssls.setup {
+  on_attach = M.on_attach,
+  capabilities = M.capabilities,
+}
+
+local angularcmd = {
+"/usr/local/bin/ngserver",
+"--tsProbeLocations","/usr/local/lib/node_modules/",
+"--ngProbeLocations","/usr/local/lib/node_modules/",
+"--stdio",
+}
+require("lspconfig").angularls.setup {
+  cmd = angularcmd,
+  on_new_config = function(new_config, new_root_dir)
+    new_config.cmd = angularcmd
+  end,
+  on_attach = M.on_attach,
+  capabilities = M.capabilities,
+}
+
 return M
