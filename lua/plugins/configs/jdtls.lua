@@ -33,7 +33,7 @@ local config = {
 
     -- 💀
     -- See `data directory configuration` section in the README
-    '-data', '/home/superuser/Documents/Projects/'
+    '-data', '/home/superuser/Documents/Projects'
   },
 
   on_attach = function(client, bufnr)
@@ -53,13 +53,18 @@ local config = {
   -- 💀
   -- This is the default if not provided, you can remove it. Or adjust as needed.
   -- One dedicated LSP server & client will be started per unique root_dir
-  root_dir = require('jdtls.setup').find_root({'.git', 'mvnw', 'gradlew', 'pom.xml'}),
+  root_dir = require('jdtls.setup').find_root({'.git', 'pom.xml'}),
 
   -- Here you can configure eclipse.jdt.ls specific settings
   -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
   -- for a list of options
   settings = {
     java = {
+      errors = {
+        incompleteClasspath = {
+          severity = 'ignore'
+        }
+      }
     }
   },
 
@@ -71,7 +76,16 @@ local config = {
   --
   -- If you don't plan on using the debugger or other eclipse.jdt.ls plugins you can remove this
   init_options = {
-    bundles = {}
+    bundles = {},
+    settings = {
+      java = {
+        errors = {
+          incompleteClasspath = {
+            severity = 'ignore'
+          }
+        }
+      }
+    },
   },
 }
 -- This starts a new client & server,

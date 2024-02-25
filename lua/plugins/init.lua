@@ -158,6 +158,7 @@ local default_plugins = {
     "neovim/nvim-lspconfig",
     init = function()
       require("core.utils").lazy_load "nvim-lspconfig"
+      require("core.utils").load_mappings "lspconfig"
     end,
    config = function()
       require "plugins.configs.lspconfig"

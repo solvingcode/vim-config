@@ -47,13 +47,7 @@ M.general = {
     -- new buffer
     ["<leader>b"] = { "<cmd> enew <CR>", "New buffer" },
     ["<leader>ch"] = { "<cmd> NvCheatsheet <CR>", "Mapping cheatsheet" },
-
-    ["<leader>fm"] = {
-      function()
-        vim.lsp.buf.format { async = true }
-      end,
-      "LSP formatting",
-    },
+    ["<leader>sf"] = {"va{", "Select current function"}
   },
 
   t = {
@@ -167,6 +161,13 @@ M.lspconfig = {
         vim.lsp.buf.signature_help()
       end,
       "LSP signature help",
+    },
+
+    ["<leader>fm"] = {
+      function()
+        vim.lsp.buf.format { async = true }
+      end,
+      "LSP formatting",
     },
 
     ["<leader>D"] = {
