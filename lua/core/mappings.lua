@@ -258,15 +258,62 @@ M.lspconfig = {
   },
 }
 
+M.jester = {
+  plugin = true,
+
+  n = {
+    ["<leader>jr"] = { "<cmd>lua require('jester').run()<cr>", "Jest run nearest" },
+    ["<leader>jc"] = { "<cmd>lua require('jester').run_file()<cr>", "Jest run current file" },
+    ["<leader>jl"] = { "<cmd>lua require('jester').run_last()<cr>", "Jest run last file" },
+  },
+}
+
+M.spectre = {
+  plugin = true,
+
+  n = {
+    ["<leader>S"] = { "<cmd>lua require('spectre').toggle()<CR>", "Toggle spectre" },
+    ["<leader>sw"] = { "<cmd>lua require('spectre').open_visual({select_word=true})<CR>", "Search current word" },
+    ["<leader>sp"] = { "<cmd>lua require('spectre').open_file_search({select_word=true})<CR>", "Search on current file" },
+  },
+
+  v = {
+    ["<leader>sw"] = { "<esc><cmd>lua require('spectre').open_visual()<CR>", "Search current word" },
+  },
+}
+
+M.trouble = {
+  plugin = true,
+
+  n = {
+    ["<leader>ts"] = { "<cmd>Trouble symbols toggle focus=false<CR>", "Symbols (Trouble)" },
+    ["<leader>tl"] = { "<cmd>Trouble lsp toggle focus=false win.position=right<CR>", "LSP Definitions / references / ... (Trouble)" },
+  },
+}
+
+M.prettier = {
+  plugin = true,
+
+  n = {
+  },
+}
+
 M.nvimtree = {
   plugin = true,
 
   n = {
     -- toggle
     ["<C-n>"] = { "<cmd> NvimTreeToggle <CR>", "Toggle nvimtree" },
+    ["<leader>tr"] = {
+      function ()
+        require("nvim-tree.api").tree.change_root_to_node()
+      end,
+      "Change root to parent"
+    },
 
     -- focus
     ["<leader>e"] = { "<cmd> NvimTreeFocus <CR>", "Focus nvimtree" },
+    ["<leader>tf"] = { "<cmd> NvimTreeFindFile <CR>", "Focus file nvimtree" },
   },
 }
 

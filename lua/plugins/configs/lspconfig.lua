@@ -7,14 +7,14 @@ local utils = require "core.utils"
 -- export on_attach & capabilities for custom lspconfigs
 
 M.on_attach = function(client, bufnr)
-  client.server_capabilities.documentFormattingProvider = false
-  client.server_capabilities.documentRangeFormattingProvider = false
+  -- client.server_capabilities.documentFormattingProvider = false
+  -- client.server_capabilities.documentRangeFormattingProvider = false
 
   utils.load_mappings("lspconfig", { buffer = bufnr })
 
-  if client.server_capabilities.signatureHelpProvider then
-    require("nvchad.signature").setup(client)
-  end
+  -- if client.server_capabilities.signatureHelpProvider then
+  --   require("nvchad.signature").setup(client)
+  -- end
 
   if not utils.load_config().ui.lsp_semantic_tokens and client.supports_method "textDocument/semanticTokens" then
     client.server_capabilities.semanticTokensProvider = nil
@@ -84,19 +84,43 @@ require("lspconfig").ccls.setup {
   capabilities = M.capabilities,
 }
 
-local angularcmd = {
-"/usr/local/bin/ngserver",
-"--tsProbeLocations","/usr/local/lib/node_modules/",
-"--ngProbeLocations","/usr/local/lib/node_modules/",
-"--stdio",
-}
-require("lspconfig").angularls.setup {
-  cmd = angularcmd,
-  on_new_config = function(new_config, new_root_dir)
-    new_config.cmd = angularcmd
-  end,
+require("lspconfig").terraformls.setup {
   on_attach = M.on_attach,
   capabilities = M.capabilities,
 }
 
+require("lspconfig").zls.setup {
+  on_attach = M.on_attach,
+  capabilities = M.capabilities,
+}
+
+require("lspconfig").gopls.setup {
+  on_attach = M.on_attach,
+  capabilities = M.capabilities,
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+      staticcheck = true,
+      gofumpt = true,
+    },
+  },
+}
+
+-- local angularcmd = {
+-- "/usr/local/bin/ngserver",
+-- "--tsProbeLocations","/usr/local/lib/node_modules/",
+-- "--ngProbeLocations","/usr/local/lib/node_modules/",
+-- "--stdio",
+-- }
+-- require("lspconfig").angularls.setup {
+--   cmd = angularcmd,
+--   on_new_config = function(new_config, new_root_dir)
+--     new_config.cmd = angularcmd
+--   end,
+--   on_attach = M.on_attach,
+--   capabilities = M.capabilities,
+-- }
+--
 return M

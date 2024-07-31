@@ -23,7 +23,7 @@ local default_plugins = {
     lazy = false,
   },
 
---[[
+  --[[
   {
     "NvChad/nvterm",
     init = function()
@@ -160,7 +160,7 @@ local default_plugins = {
       require("core.utils").lazy_load "nvim-lspconfig"
       require("core.utils").load_mappings "lspconfig"
     end,
-   config = function()
+    config = function()
       require "plugins.configs.lspconfig"
     end,
   },
@@ -216,12 +216,12 @@ local default_plugins = {
   {
     "numToStr/Comment.nvim",
     keys = {
-      { "gcc", mode = "n", desc = "Comment toggle current line" },
-      { "gc", mode = { "n", "o" }, desc = "Comment toggle linewise" },
-      { "gc", mode = "x", desc = "Comment toggle linewise (visual)" },
-      { "gbc", mode = "n", desc = "Comment toggle current block" },
-      { "gb", mode = { "n", "o" }, desc = "Comment toggle blockwise" },
-      { "gb", mode = "x", desc = "Comment toggle blockwise (visual)" },
+      { "gcc", mode = "n",          desc = "Comment toggle current line" },
+      { "gc",  mode = { "n", "o" }, desc = "Comment toggle linewise" },
+      { "gc",  mode = "x",          desc = "Comment toggle linewise (visual)" },
+      { "gbc", mode = "n",          desc = "Comment toggle current block" },
+      { "gb",  mode = { "n", "o" }, desc = "Comment toggle blockwise" },
+      { "gb",  mode = "x",          desc = "Comment toggle blockwise (visual)" },
     },
     init = function()
       require("core.utils").load_mappings "comment"
@@ -266,6 +266,53 @@ local default_plugins = {
       for _, ext in ipairs(opts.extensions_list) do
         telescope.load_extension(ext)
       end
+    end,
+  },
+
+  {
+    "david-kunz/jester",
+    init = function()
+      require("core.utils").load_mappings "jester"
+    end,
+  },
+
+  {
+    "MunifTanjim/prettier.nvim",
+    init = function()
+      require("core.utils").load_mappings "prettier"
+    end,
+    opts = function()
+      return require "plugins.configs.prettier"
+    end,
+    config = function(_, opts)
+      require('prettier').setup(opts)
+    end,
+  },
+
+  {
+    "nvim-pack/nvim-spectre",
+    init = function()
+      require("core.utils").load_mappings "spectre"
+    end,
+    opts = function()
+      return require "plugins.configs.spectre"
+    end,
+    config = function(_, opts)
+      require('spectre').setup(opts)
+    end,
+  },
+
+  {
+    "folke/trouble.nvim",
+    init = function()
+      require("core.utils").load_mappings "trouble"
+    end,
+    cmd = "Trouble",
+    opts = function()
+      return require "plugins.configs.trouble"
+    end,
+    config = function(_, opts)
+      require('trouble').setup(opts)
     end,
   },
 
