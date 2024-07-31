@@ -108,6 +108,11 @@ require("lspconfig").gopls.setup {
   },
 }
 
+require("lspconfig").pylsp.setup {
+  on_attach = M.on_attach,
+  capabilities = M.capabilities,
+}
+
 -- local angularcmd = {
 -- "/usr/local/bin/ngserver",
 -- "--tsProbeLocations","/usr/local/lib/node_modules/",
