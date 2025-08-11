@@ -82,6 +82,13 @@ require("lspconfig").cssls.setup {
 require("lspconfig").ccls.setup {
   on_attach = M.on_attach,
   capabilities = M.capabilities,
+  init_options = {
+    include = {
+      paths = {
+        "/home/superuser/Documents/Projects/scircuit/sc-engine/clib/physx/include",
+      }
+    }
+  }
 }
 
 require("lspconfig").terraformls.setup {
@@ -92,6 +99,9 @@ require("lspconfig").terraformls.setup {
 require("lspconfig").zls.setup {
   on_attach = M.on_attach,
   capabilities = M.capabilities,
+  settings = {
+    warn_style = true
+  }
 }
 
 require("lspconfig").gopls.setup {

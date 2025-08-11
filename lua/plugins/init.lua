@@ -142,6 +142,38 @@ local default_plugins = {
   },
 
   {
+    "rcarriga/nvim-dap-ui",
+    dependencies = "mfussenegger/nvim-dap",
+    config = function()
+      require("dapui").setup()
+    end,
+  },
+  {
+    "nvim-neotest/nvim-nio" -- Required by nvim-dap-ui
+  },
+
+  {
+    "mfussenegger/nvim-dap",
+    init = function()
+      require("core.utils").load_mappings "nvimdap"
+    end,
+    config = function(_, opts)
+      local dap = require("dap")
+      local dap_ui_status_ok, dapui = pcall(require, "dapui")
+      -- Load configurations
+      dap.adapters = opts.adapters
+      dap.configurations = opts.configurations
+      -- Setup UI if available
+      if dap_ui_status_ok then
+        dapui.setup(opts.dapui)
+      end
+    end,
+    opts = function()
+      return require "plugins.configs.nvimdap"
+    end,
+  },
+
+  {
     "mfussenegger/nvim-jdtls",
     ft = "java",
     config = function()

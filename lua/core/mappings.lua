@@ -268,6 +268,92 @@ M.jester = {
   },
 }
 
+M.nvimdap = {
+  plugin = true,
+  n = {
+    ["<leader>db"] = {
+      function()
+        require("dap").toggle_breakpoint()
+      end,
+      "Add breakpoint at line",
+    },
+    ["<leader>dr"] = {
+      function()
+        require("dap").continue()
+      end,
+      "Start or continue the debugger",
+    },
+    ["<leader>ds"] = {
+      function()
+        require("dap").terminate()
+        require("dapui").close()
+      end,
+      "Stop debugger",
+    },
+    ["<F5>"] = {
+      function()
+        require("dap").continue()
+      end,
+      "Continue debugging",
+    },
+    ["<F10>"] = {
+      function()
+        require("dap").step_over()
+      end,
+      "Step over",
+    },
+    ["<F11>"] = {
+      function()
+        require("dap").step_into()
+      end,
+      "Step into",
+    },
+    ["<F12>"] = {
+      function()
+        require("dap").step_out()
+      end,
+      "Step out",
+    },
+    ["<leader>dj"] = {
+      function()
+        require("dap").down()
+      end,
+      "Move down stacktrace",
+    },
+    ["<leader>dk"] = {
+      function()
+        require("dap").up()
+      end,
+      "Move up stacktrace",
+    },
+    -- Additional useful commands
+    ["<leader>dB"] = {
+      function()
+        require("dap").set_breakpoint(vim.fn.input('Breakpoint condition: '))
+      end,
+      "Set breakpoint with condition",
+    },
+    ["<leader>dl"] = {
+      function()
+        require("dap").run_last()
+      end,
+      "Run last debug configuration",
+    },
+    ["<leader>do"] = {
+      function()
+        require("dapui").toggle()
+      end,
+      "Toggle debug UI",
+    },
+    ["<leader>dx"] = {
+      function()
+        require("dap").clear_breakpoints()
+      end,
+      "Clear breakpoints",
+    },
+  }
+}
+
 M.spectre = {
   plugin = true,
 
